@@ -4,16 +4,18 @@ const path = require("path");
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 const reqFilter = require("./middelware");
-const e = require("express");
 const app = express();
 const route = express.Router();
 
 dotenv.config({ path: "./config.env" });
 require("./db/connection");
+app.use(express.json());
+app.use(require("./router/auth"));
+
 
 const PORT = process.env.PORT;
 
-route.use(reqFilter);
+// route.use(reqFilter);
 
 app.get("/", (req, res) => {
   res.send("Welcome to home page");
@@ -31,7 +33,11 @@ route.get("/contact", (req, res) => {
   res.send("Welcome to contact page");
 });
 
-app.use("/", route);
+app.get('*', (req, res)=>{
+  res.send('Page not found')
+});
+
+// app.use("/", route);
 
 // dirPath = path.join(__dirname, 'files');
 // filePath = `${dirPath}/doc2.txt`;
