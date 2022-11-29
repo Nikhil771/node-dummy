@@ -9,35 +9,37 @@ const route = express.Router();
 
 dotenv.config({ path: "./config.env" });
 require("./db/connection");
+const PORT = process.env.PORT;
+
 app.use(express.json());
 app.use(require("./router/auth"));
+// app.use("/", route);
 
 
-const PORT = process.env.PORT;
 
 // route.use(reqFilter);
 
-app.get("/", (req, res) => {
-  res.send("Welcome to home page");
-});
+// app.get("/", (req, res) => {
+//   res.send("Welcome to home page");
+// });
 
-app.get("/users", (req, res) => {
-  res.send("Welcome to users page");
-});
+// app.get("/users", (req, res) => {
+//   res.send("Welcome to users page");
+// });
 
-route.get("/about", (req, res) => {
-  res.send("Welcome to about page");
-});
+// route.get("/about", (req, res) => {
+//   res.send("Welcome to about page");
+// });
 
-route.get("/contact", (req, res) => {
-  res.send("Welcome to contact page");
-});
+// route.get("/contact", (req, res) => {
+//   res.send("Welcome to contact page");
+// });
 
-app.get('*', (req, res)=>{
-  res.send('Page not found')
-});
+// app.get('*', (req, res)=>{
+//   res.send('Page not found')
+// });
 
-// app.use("/", route);
+
 
 // dirPath = path.join(__dirname, 'files');
 // filePath = `${dirPath}/doc2.txt`;
